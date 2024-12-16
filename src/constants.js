@@ -1,44 +1,3 @@
-const INPUTS = [
-  {
-    label: 'First Name',
-    id: 'first-name',
-    type: 'text',
-  },
-  {
-    label: 'Last Name',
-    id: 'last-name',
-    type: 'text',
-  },
-  {
-    label: 'Date of Birth',
-    id: 'date-of-birth',
-    type: 'date',
-  },
-  {
-    label: 'Start Date',
-    id: 'start-date',
-    type: 'date',
-  },
-];
-
-const INPUTS_ADDRESS = [
-  {
-    label: 'Street',
-    id: 'street',
-    type: 'text',
-  },
-  {
-    label: 'City',
-    id: 'city',
-    type: 'text',
-  },
-  {
-    label: 'Zip Code',
-    id: 'zip-code',
-    type: 'number',
-  },
-];
-
 const STATES = [
   {
     name: 'Alabama',
@@ -278,4 +237,76 @@ const STATES = [
   },
 ];
 
-export { INPUTS, INPUTS_ADDRESS, STATES };
+const DEPARTMENTS = [
+  {
+    name: 'Sales',
+  },
+  {
+    name: 'Marketing',
+  },
+  {
+    name: 'Engineering',
+  },
+  {
+    name: 'Human Resources',
+  },
+  {
+    name: 'Legal',
+  },
+];
+
+const DEPARTMENT = {
+  label: 'Department',
+  id: 'department',
+  type: 'select',
+  options: DEPARTMENTS,
+};
+
+const INPUTS = [
+  {
+    label: 'First Name',
+    id: 'first-name',
+    type: 'text',
+  },
+  {
+    label: 'Last Name',
+    id: 'last-name',
+    type: 'text',
+  },
+  {
+    label: 'Date of Birth',
+    id: 'date-of-birth',
+    type: 'date',
+  },
+  {
+    label: 'Start Date',
+    id: 'start-date',
+    type: 'date',
+  },
+];
+
+const INPUTS_ADDRESS = [
+  {
+    label: 'Street',
+    id: 'street',
+    type: 'text',
+  },
+  {
+    label: 'City',
+    id: 'city',
+    type: 'text',
+  },
+  {
+    label: 'State',
+    id: 'state',
+    type: 'select',
+    options: STATES,
+  },
+  {
+    label: 'Zip Code',
+    id: 'zip-code',
+    type: 'number',
+  },
+];
+
+export { INPUTS, INPUTS_ADDRESS, DEPARTMENT };

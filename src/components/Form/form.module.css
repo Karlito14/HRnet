@@ -1,1 +1,10 @@
-.form {}
+#form {
+  display: flex;
+  flex-direction: column;
+}
+
+.address {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
