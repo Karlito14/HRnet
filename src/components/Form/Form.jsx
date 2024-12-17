@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { DEPARTMENT, INPUTS, INPUTS_ADDRESS } from '../../constants';
 import { Input } from '../Input/Input';
 import styles from './form.module.css';
 
 export const Form = () => {
+  const [employee, setEmployee] = useState({});
+
   return (
     <form id={styles.form}>
       {INPUTS.map((item) => {

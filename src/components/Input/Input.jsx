@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import styles from './input.module.css';
 
 export const Input = ({ item }) => {
+  const [valueInput, setValueInput] = useState(null);
+
   return (
     <>
       {item.type === 'select' ? (
@@ -8,10 +11,18 @@ export const Input = ({ item }) => {
           <label className={styles.label} htmlFor={item.id}>
             {item.label}
           </label>
-          <select className={styles.select} name={item.id} id={item.id}>
+          <select
+            className={styles.select}
+            name={item.id}
+            id={item.id}
+            onChange={(event) => setValueInput(event.target.value)}
+          >
             {item.options.map((option) => {
               return (
-                <option key={option} value={option.abbreviation || option.name}>
+                <option
+                  key={option.name}
+                  value={option.abbreviation || option.name}
+                >
                   {option.name}
                 </option>
               );
@@ -23,7 +34,11 @@ export const Input = ({ item }) => {
           <label className={styles.label} htmlFor={item.id}>
             {item.label}
           </label>
-          <input id={item.id} type={item.type} />
+          <input
+            id={item.id}
+            type={item.type}
+            onChange={(event) => setValueInput(event.target.value)}
+          />
         </>
       )}
     </>
