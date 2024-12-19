@@ -18,6 +18,7 @@ export const Form = () => {
         })}
       </fieldset>
       <Input item={DEPARTMENT} />
+      <button className={styles.button}>Save</button>
     </form>
   );
 };
