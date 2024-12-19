@@ -35,6 +35,7 @@ export const Input = ({ item }) => {
             {item.label}
           </label>
           <input
+            className={styles.input}
             id={item.id}
             type={item.type}
             onChange={(event) => setValueInput(event.target.value)}
