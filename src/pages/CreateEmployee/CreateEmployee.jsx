@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router';
+import { EmployeeForm } from '../../components/EmployeeForm/EmployeeForm';
 
 export const CreateEmployee = () => {
   return (
@@ -6,6 +7,7 @@ export const CreateEmployee = () => {
       <h1>HRnet</h1>
       <NavLink to="/employee-list">View Current Employees</NavLink>
       <h2>Create Employee</h2>
+      <EmployeeForm />
     </>
   );
 };
