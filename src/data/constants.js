@@ -238,11 +238,21 @@ const STATES = [
 ];
 
 const DEPARTMENTS = [
-  'Sales',
-  'Marketing',
-  'Engineering',
-  'Human Resources',
-  'Legal',
+  {
+    name: 'Sales',
+  },
+  {
+    name: 'Marketing',
+  },
+  {
+    name: 'Engineering',
+  },
+  {
+    name: 'Human Resources',
+  },
+  {
+    name: 'Legal',
+  },
 ];
 
 export { STATES, DEPARTMENTS };
