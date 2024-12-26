@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { addEmployee, editEmployee } from '../../features/employeesSlice';
 import style from './EmployeeForm.module.css';
 import { DEPARTMENTS, STATES } from '@data/constants';
 import { InputField } from '@components/InputField/InputField';
@@ -22,6 +24,7 @@ export const EmployeeForm = () => {
   const [formData, setFormData] = useState(DEFAULT_EMPLOYEE);
   const [errors, setErrors] = useState({});
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   const handleChange = (name, value) => {
     if (value) {
@@ -63,9 +66,9 @@ export const EmployeeForm = () => {
       };
 
       if (id) {
-        console.log('Updating employee:', employee);
+        dispatch(editEmployee({ ...employee, id }));
       } else {
-        console.log('Adding new employee:', employee);
+        dispatch(addEmployee(employee));
       }
     }
   };

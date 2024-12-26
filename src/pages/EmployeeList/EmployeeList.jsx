@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import styles from './employeeList.module.css';
+import { useSelector } from 'react-redux';
 
 export const EmployeeList = () => {
   const [entries, setEntries] = useState('10');
   const [search, setSearch] = useState('');
+  const employees = useSelector((state) => state.employees.employees)
+  console.log(employees)
 
   return (
     <>
