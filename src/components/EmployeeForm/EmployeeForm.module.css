@@ -9,7 +9,7 @@
 }
 
 .address {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .address_input {
@@ -18,8 +18,8 @@
 }
 
 .button {
-    align-self: center;
-    margin-top: 10px;
-    padding: 10px;
-    cursor: pointer;
+  align-self: center;
+  margin-top: 10px;
+  padding: 10px;
+  cursor: pointer;
 }

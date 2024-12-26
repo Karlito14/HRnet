@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router';
-import { EmployeeForm } from '../../components/EmployeeForm/EmployeeForm';
+import { EmployeeForm } from '@components/EmployeeForm/EmployeeForm';
 
 export const CreateEmployee = () => {
   return (
