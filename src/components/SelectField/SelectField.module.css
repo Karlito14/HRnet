@@ -1,19 +1,20 @@
 .field {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
-  
-  .field label {
-    margin-top: 10px;
-  }
-  
-  .field select {
-    margin-top: 5px;
-    padding: 10px;
-    font-size: 16px;
-  }
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
 
-  .error {
-    color: #d70000;
-  }
+.field label {
+  margin-top: 10px;
+}
+
+.field select {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.error {
+  color: #d70000;
+  margin-top: 3px;
+}

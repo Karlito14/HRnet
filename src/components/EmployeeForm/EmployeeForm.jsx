@@ -40,17 +40,24 @@ export const EmployeeForm = () => {
   };
 
   const validateForm = () => {
-    const newErrors = {};
-    if (!formData.firstName) newErrors.firstName = 'First name is required';
-    if (!formData.lastName) newErrors.lastName = 'Last name is required';
-    if (!formData.dateOfBirth)
-      newErrors.dateOfBirth = 'Date of birth is required';
-    if (!formData.startDate) newErrors.startDate = 'Start date is required';
-    if (!formData.street) newErrors.street = 'Street is required';
-    if (!formData.city) newErrors.city = 'City is required';
-    if (!formData.state) newErrors.state = 'State is required';
-    if (!formData.zipCode) newErrors.zipCode = 'Zip code is required';
-    if (!formData.department) newErrors.department = 'Department is required';
+    const requiredFields = [
+      { field: 'firstName', message: 'First name is required' },
+      { field: 'lastName', message: 'Last name is required' },
+      { field: 'dateOfBirth', message: 'Date of birth is required' },
+      { field: 'startDate', message: 'Start date is required' },
+      { field: 'street', message: 'Street is required' },
+      { field: 'city', message: 'City is required' },
+      { field: 'state', message: 'State is required' },
+      { field: 'zipCode', message: 'Zip code is required' },
+      { field: 'department', message: 'Department is required' },
+    ];
+  
+    const newErrors = requiredFields.reduce((errors, { field, message }) => {
+      if (!formData[field]) {
+        errors[field] = message;
+      }
+      return errors;
+    }, {});
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;

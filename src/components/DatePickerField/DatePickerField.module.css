@@ -15,5 +15,6 @@
 }
 
 .error {
+  margin-top: 3px;
   color: #d70000;
 }

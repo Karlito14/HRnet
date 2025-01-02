@@ -1,0 +1,13 @@
+.container_header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.select_entries {
+  margin-left: 5px;
+}
+
+.label_search {
+  margin-right: 5px;
+}

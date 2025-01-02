@@ -14,6 +14,10 @@ export const router = createBrowserRouter([
         element: <CreateEmployee />,
       },
       {
+        path: '/edit/:id',
+        element: <CreateEmployee />,
+      },
+      {
         path: 'employee-list',
         element: <EmployeeList />,
       },
