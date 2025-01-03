@@ -51,26 +51,22 @@ export const EmployeeListComponent = () => {
   const sortData = (data, sortConfig) => {
     if (!sortConfig.key) return data;
 
+    const directionFactor = sortConfig.direction === 'ascending' ? 1 : -1;
+
     return [...data].sort((a, b) => {
-      if (a[sortConfig.key] < b[sortConfig.key]) {
-        return sortConfig.direction === 'ascending' ? -1 : 1;
-      }
-      if (a[sortConfig.key] > b[sortConfig.key]) {
-        return sortConfig.direction === 'ascending' ? 1 : -1;
-      }
-      return 0;
+      const valueA = a[sortConfig.key];
+      const valueB = b[sortConfig.key];
+
+      if (valueA === valueB) return 0;
+      return valueA < valueB ? -directionFactor : directionFactor;
     });
   };
 
   const requestSort = (key) => {
-    let direction = 'ascending';
-    if (sortConfig.key === key) {
-      if (sortConfig.direction === 'ascending') {
-        direction = 'descending';
-      } else {
-        direction = 'ascending';
-      }
-    }
+    const direction =
+      sortConfig.key === key && sortConfig.direction === 'ascending'
+        ? 'descending'
+        : 'ascending';
     setSortConfig({ key, direction });
   };
 
@@ -84,29 +80,27 @@ export const EmployeeListComponent = () => {
     navigate(`/edit/${employeeId}`);
   };
 
+  const handlePrevious = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+  
+  const handleNext = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+  
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return isNaN(date.getTime()) ? 'Invalid Date' : date.toLocaleDateString();
+  };
+
   const indexOfLastItem = currentPage * entries;
   const indexOfFirstItem = indexOfLastItem - entries;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredData.length / entries);
-
-  const handlePrevious = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
-  };
-
-  const handleNext = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  };
-
-  const formatDate = (dateString) => {
-    if (!dateString) return 'N/A';
-    const date = new Date(dateString);
-    return date instanceof Date && !isNaN(date)
-      ? date.toLocaleDateString()
-      : 'Invalid Date';
-  };
-
+  
   return (
-    <>
+    <div>
       <div className={styles.container_header}>
         <div>
           <label htmlFor="entries">
@@ -138,8 +132,8 @@ export const EmployeeListComponent = () => {
         </div>
       </div>
 
-      <div className="table-container">
-        <table className="employeeTable">
+      <div>
+        <table>
           <thead>
             <tr>
               <SortableHeader
@@ -214,51 +208,47 @@ export const EmployeeListComponent = () => {
                   <td>{item.state}</td>
                   <td>{item.zipCode}</td>
                   <td>
-                    <button
-                      onClick={() => handleEdit(item.id)}
-                      className="edit-button"
-                      aria-label={`Edit ${item.firstName} ${item.lastName}`}
-                    >
-                      <FaPenToSquare className="icon" />
+                    <button onClick={() => handleEdit(item.id)}>
+                      <FaPenToSquare />
                     </button>
                   </td>
                   <td>
-                    <button
-                      onClick={() => handleDelete(item.id)}
-                      className="delete-button"
-                      aria-label={`Delete ${item.firstName} ${item.lastName}`}
-                    >
-                      <FaTimes className="icon" />
+                    <button onClick={() => handleDelete(item.id)}>
+                      <FaTimes />
                     </button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="11" className="employeeTable-no-data">
-                  No data available in table
-                </td>
+                <td colSpan="11">No data available in table</td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
 
-      <div className="employeeTable-footer">
-        <div className="employeeTable-info">
+      <div>
+        <div>
           Showing {indexOfFirstItem + 1} to{' '}
           {Math.min(indexOfLastItem, filteredData.length)} of{' '}
           {filteredData.length} entries
         </div>
-        <div className="employeeTable-pagination">
+        <div>
           <button onClick={handlePrevious} disabled={currentPage === 1}>
             Previous
           </button>
-          <button onClick={handleNext} disabled={currentPage === totalPages}>
+          <span>{currentPage}</span>
+          <button
+            onClick={handleNext}
+            disabled={
+              currentItems.length > 0 ? currentPage === totalPages : true
+            }
+          >
             Next
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };

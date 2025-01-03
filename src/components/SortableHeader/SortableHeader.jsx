@@ -5,9 +5,9 @@ export const SortableHeader = ({ column, label, sortConfig, requestSort }) => {
 
   return (
     <th onClick={() => requestSort(column)} className={styles.sortable}>
-      <div className="sortableHeaderContent">
+      <div>
         <span>{label}</span>
-        <span className="sortableHeaderIndicator">
+        <span>
           {isSorted && sortConfig.direction === 'ascending' ? '▲' : '▼'}
         </span>
       </div>
