@@ -54,8 +54,8 @@ export const EmployeeListComponent = () => {
     const directionFactor = sortConfig.direction === 'ascending' ? 1 : -1;
 
     return [...data].sort((a, b) => {
-      const valueA = a[sortConfig.key];
-      const valueB = b[sortConfig.key];
+      const valueA = a[sortConfig.key].toLowerCase();
+      const valueB = b[sortConfig.key].toLowerCase();
 
       if (valueA === valueB) return 0;
       return valueA < valueB ? -directionFactor : directionFactor;
@@ -83,11 +83,11 @@ export const EmployeeListComponent = () => {
   const handlePrevious = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
-  
+
   const handleNext = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   };
-  
+
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
     const date = new Date(dateString);
@@ -98,7 +98,7 @@ export const EmployeeListComponent = () => {
   const indexOfFirstItem = indexOfLastItem - entries;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredData.length / entries);
-  
+
   return (
     <div>
       <div className={styles.container_header}>

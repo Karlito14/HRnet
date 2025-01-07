@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addEmployee, editEmployee } from '../../features/employeesSlice';
 import style from './EmployeeForm.module.css';
 import { DEPARTMENTS, STATES } from '@data/constants';
@@ -29,7 +29,7 @@ export const EmployeeForm = () => {
   const handleChange = (name, value) => {
     if (value) {
       const newValue = value[0].toUpperCase() + value.slice(1);
-      setFormData((prevState) => ({ ...prevState, [name]: newValue.trim() }));
+      setFormData((prevState) => ({ ...prevState, [name]: newValue }));
     } else {
       setFormData((prevState) => ({ ...prevState, [name]: value }));
     }
@@ -51,7 +51,7 @@ export const EmployeeForm = () => {
       { field: 'zipCode', message: 'Zip code is required' },
       { field: 'department', message: 'Department is required' },
     ];
-  
+
     const newErrors = requiredFields.reduce((errors, { field, message }) => {
       if (!formData[field]) {
         errors[field] = message;
@@ -79,6 +79,24 @@ export const EmployeeForm = () => {
       }
     }
   };
+
+  const resetForm = () => {
+    setFormData(DEFAULT_EMPLOYEE);
+  };
+
+  const employeeToEdit = useSelector(state => 
+    state.employees.employees.find(emp => emp.id === id)
+  );
+
+  useEffect(() => {
+    if (id && employeeToEdit) {
+      setFormData({
+        ...employeeToEdit,
+        dateOfBirth: new Date(employeeToEdit.dateOfBirth),
+        startDate: new Date(employeeToEdit.startDate),
+      });
+    }
+  }, [id, employeeToEdit]);
 
   return (
     <form className={style.employeeForm}>
