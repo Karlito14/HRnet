@@ -77,6 +77,8 @@ export const EmployeeForm = () => {
       } else {
         dispatch(addEmployee(employee));
       }
+
+      resetForm();
     }
   };
 
@@ -84,8 +86,8 @@ export const EmployeeForm = () => {
     setFormData(DEFAULT_EMPLOYEE);
   };
 
-  const employeeToEdit = useSelector(state => 
-    state.employees.employees.find(emp => emp.id === id)
+  const employeeToEdit = useSelector((state) =>
+    state.employees.employees.find((emp) => emp.id === id)
   );
 
   useEffect(() => {

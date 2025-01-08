@@ -196,8 +196,11 @@ export const EmployeeListComponent = () => {
           </thead>
           <tbody>
             {currentItems.length > 0 ? (
-              currentItems.map((item) => (
-                <tr key={item.id}>
+              currentItems.map((item, index) => (
+                <tr
+                  key={item.id}
+                  style={{ backgroundColor: index % 2 === 0 ? '#eee' : '' }}
+                >
                   <td>{item.firstName}</td>
                   <td>{item.lastName}</td>
                   <td>{formatDate(item.startDate)}</td>
@@ -228,7 +231,7 @@ export const EmployeeListComponent = () => {
         </table>
       </div>
 
-      <div>
+      <div className={styles.footer}>
         <div>
           Showing {indexOfFirstItem + 1} to{' '}
           {Math.min(indexOfLastItem, filteredData.length)} of{' '}
