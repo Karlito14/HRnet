@@ -6,10 +6,39 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #9a4112;
+}
+
+.employeeForm label {
+  color: white;
+  font-size: 16px;
+}
+
+.employeeForm input, .employeeForm select {
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.employeeForm button {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.employeeForm button:hover {
+  scale: 1.05;
 }
 
 .address {
   margin-top: 20px;
+}
+
+.address legend {
+  font-size: 14px;
+  color: white;
 }
 
 .address_input {

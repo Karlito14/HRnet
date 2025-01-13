@@ -19,3 +19,16 @@
   width: 100%;
   margin-top: 20px;
 }
+
+.currentPage {
+  margin: 0 5px;
+}
+
+table {
+  background-color: #c2520c;
+  padding: 3px;
+}
+
+table td {
+  padding: 5px;
+}

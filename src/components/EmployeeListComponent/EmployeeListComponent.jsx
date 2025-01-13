@@ -199,7 +199,7 @@ export const EmployeeListComponent = () => {
               currentItems.map((item, index) => (
                 <tr
                   key={item.id}
-                  style={{ backgroundColor: index % 2 === 0 ? '#eee' : '' }}
+                  style={{ backgroundColor: index % 2 === 0 ? '#fff' : '#eee' }}
                 >
                   <td>{item.firstName}</td>
                   <td>{item.lastName}</td>
@@ -241,7 +241,7 @@ export const EmployeeListComponent = () => {
           <button onClick={handlePrevious} disabled={currentPage === 1}>
             Previous
           </button>
-          <span>{currentPage}</span>
+          <span className={styles.currentPage}>{currentPage}</span>
           <button
             onClick={handleNext}
             disabled={
