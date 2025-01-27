@@ -8,7 +8,7 @@ export const EmployeeList = () => {
       <div>
         <EmployeeListComponent />
       </div>
-      <NavLink to="/">Home</NavLink>
+      <NavLink to="/" className='button'>Home</NavLink>
     </>
   );
 };

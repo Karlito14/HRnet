@@ -14,22 +14,11 @@
   font-size: 16px;
 }
 
-.employeeForm input, .employeeForm select {
+.employeeForm input,
+.employeeForm select {
   border-radius: 5px;
   border: none;
   outline: none;
-}
-
-.employeeForm button {
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: all 0.3s;
-}
-
-.employeeForm button:hover {
-  scale: 1.05;
 }
 
 .address {
@@ -47,8 +36,23 @@
 }
 
 .button {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: all 0.3s;
   align-self: center;
   margin-top: 10px;
   padding: 10px;
   cursor: pointer;
+}
+
+.button:hover {
+  scale: 1.05;
+}
+
+.customButton {
+  background-color: #9a4112;
+  font-size: 20px;
+  color: white;
 }

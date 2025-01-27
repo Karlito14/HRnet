@@ -5,7 +5,7 @@ export const CreateEmployee = () => {
   return (
     <>
       <h1>HRnet</h1>
-      <NavLink to="/employee-list">View Current Employees</NavLink>
+      <NavLink to="/employee-list" className='button'>View Current Employees</NavLink>
       <h2>Create Employee</h2>
       <EmployeeForm />
     </>

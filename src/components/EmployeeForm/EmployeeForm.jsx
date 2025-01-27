@@ -7,6 +7,7 @@ import { DEPARTMENTS, STATES } from '@data/constants';
 import { InputField } from '@components/InputField/InputField';
 import { DatePickerField } from '@components/DatePickerField/DatePickerField';
 import { SelectField } from '@components/SelectField/SelectField';
+import { Modal } from 'react-modal_by_cl';
 
 export const EmployeeForm = () => {
   const DEFAULT_EMPLOYEE = {
@@ -23,6 +24,7 @@ export const EmployeeForm = () => {
 
   const [formData, setFormData] = useState(DEFAULT_EMPLOYEE);
   const [errors, setErrors] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -78,8 +80,13 @@ export const EmployeeForm = () => {
         dispatch(addEmployee(employee));
       }
 
-      resetForm();
+      setIsModalOpen(true);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    resetForm();
   };
 
   const resetForm = () => {
@@ -101,90 +108,95 @@ export const EmployeeForm = () => {
   }, [id, employeeToEdit]);
 
   return (
-    <form className={style.employeeForm}>
-      <InputField
-        label={'First Name'}
-        id={'first-name'}
-        value={formData.firstName}
-        onChange={(value) => handleChange('firstName', value)}
-        error={errors.firstName}
-      />
-
-      <InputField
-        label={'Last Name'}
-        id={'last-name'}
-        value={formData.lastName}
-        onChange={(value) => handleChange('lastName', value)}
-        error={errors.lastName}
-      />
-
-      <DatePickerField
-        label="Date of Birth"
-        selected={formData.dateOfBirth}
-        onChange={(date) => handleDateChange('dateOfBirth', date)}
-        error={errors.dateOfBirth}
-      />
-
-      <DatePickerField
-        label="Start Date"
-        selected={formData.startDate}
-        onChange={(date) => handleDateChange('startDate', date)}
-        error={errors.startDate}
-      />
-
-      <fieldset className={style.address}>
-        <legend>Address</legend>
+    <>
+      <form className={style.employeeForm}>
         <InputField
-          label={'Street'}
-          id={'street'}
-          value={formData.street}
-          onChange={(value) => handleChange('street', value)}
-          error={errors.street}
+          label={'First Name'}
+          id={'first-name'}
+          value={formData.firstName}
+          onChange={(value) => handleChange('firstName', value)}
+          error={errors.firstName}
         />
 
         <InputField
-          label={'City'}
-          id={'city'}
-          value={formData.city}
-          onChange={(value) => handleChange('city', value)}
-          error={errors.city}
+          label={'Last Name'}
+          id={'last-name'}
+          value={formData.lastName}
+          onChange={(value) => handleChange('lastName', value)}
+          error={errors.lastName}
         />
+
+        <DatePickerField
+          label="Date of Birth"
+          selected={formData.dateOfBirth}
+          onChange={(date) => handleDateChange('dateOfBirth', date)}
+          error={errors.dateOfBirth}
+        />
+
+        <DatePickerField
+          label="Start Date"
+          selected={formData.startDate}
+          onChange={(date) => handleDateChange('startDate', date)}
+          error={errors.startDate}
+        />
+
+        <fieldset className={style.address}>
+          <legend>Address</legend>
+          <InputField
+            label={'Street'}
+            id={'street'}
+            value={formData.street}
+            onChange={(value) => handleChange('street', value)}
+            error={errors.street}
+          />
+
+          <InputField
+            label={'City'}
+            id={'city'}
+            value={formData.city}
+            onChange={(value) => handleChange('city', value)}
+            error={errors.city}
+          />
+
+          <SelectField
+            label="State"
+            id="state"
+            value={formData.state}
+            options={STATES}
+            onChange={(value) => handleChange('state', value)}
+            error={errors.state}
+          />
+
+          <InputField
+            label={'Zip Code'}
+            id={'zip-code'}
+            value={formData.zipCode}
+            onChange={(value) => handleChange('zipCode', value)}
+            error={errors.zipCode}
+            type="number"
+          />
+        </fieldset>
 
         <SelectField
-          label="State"
-          id="state"
-          value={formData.state}
-          options={STATES}
-          onChange={(value) => handleChange('state', value)}
-          error={errors.state}
+          label="Department"
+          id="department"
+          value={formData.department}
+          options={DEPARTMENTS}
+          onChange={(value) => handleChange('department', value)}
+          error={errors.department}
         />
 
-        <InputField
-          label={'Zip Code'}
-          id={'zip-code'}
-          value={formData.zipCode}
-          onChange={(value) => handleChange('zipCode', value)}
-          error={errors.zipCode}
-          type="number"
-        />
-      </fieldset>
-
-      <SelectField
-        label="Department"
-        id="department"
-        value={formData.department}
-        options={DEPARTMENTS}
-        onChange={(value) => handleChange('department', value)}
-        error={errors.department}
-      />
-
-      <button
-        className={style.button}
-        type="button"
-        onClick={() => handleSubmit()}
-      >
-        {id ? 'Update Employee' : 'Add Employee'}
-      </button>
-    </form>
+        <button
+          className={style.button}
+          type="button"
+          onClick={() => handleSubmit()}
+        >
+          {id ? 'Update Employee' : 'Add Employee'}
+        </button>
+      </form>
+      <Modal isOpen={isModalOpen} onClose={closeModal} buttonClassName={style.customButton}>
+        {id ? 'Employee Updated' : 'Employee Created'}
+      </Modal>
+    </>
   );
 };
