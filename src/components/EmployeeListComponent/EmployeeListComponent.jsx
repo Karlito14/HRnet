@@ -6,6 +6,7 @@ import styles from './EmployeeListComponent.module.css';
 import { SortableHeader } from '../SortableHeader/SortableHeader';
 import { FaPenToSquare } from 'react-icons/fa6';
 import { FaTimes } from 'react-icons/fa';
+import { Modal } from 'react-modal_by_cl';
 
 export const EmployeeListComponent = () => {
   const employees = useSelector((state) => state.employees.employees);
@@ -19,6 +20,8 @@ export const EmployeeListComponent = () => {
     direction: 'ascending',
   });
   const [currentPage, setCurrentPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [employeeId, setEmployeeId] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -71,9 +74,17 @@ export const EmployeeListComponent = () => {
   };
 
   const handleDelete = (employeeId) => {
-    if (window.confirm('Are you sure you want to delete this employee?')) {
-      dispatch(deleteEmployee(employeeId));
-    }
+    setIsModalOpen(true);
+    setEmployeeId(employeeId);
+  };
+
+  const confirmDelete = () => {
+    dispatch(deleteEmployee(employeeId));
+    closeModal();
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleEdit = (employeeId) => {
@@ -252,6 +263,11 @@ export const EmployeeListComponent = () => {
           </button>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <p>Are you sure you want to delete this employee?</p>
+        <button className={styles.buttonConfirm} onClick={confirmDelete}>Yes</button>
+        <button onClick={closeModal}>No</button>
+      </Modal>
     </div>
   );
 };
