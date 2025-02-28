@@ -85,6 +85,7 @@ export const EmployeeListComponent = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setEmployeeId(null);
   };
 
   const handleEdit = (employeeId) => {
@@ -265,7 +266,9 @@ export const EmployeeListComponent = () => {
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <p>Are you sure you want to delete this employee?</p>
-        <button className={styles.buttonConfirm} onClick={confirmDelete}>Yes</button>
+        <button className={styles.buttonConfirm} onClick={confirmDelete}>
+          Yes
+        </button>
         <button onClick={closeModal}>No</button>
       </Modal>
     </div>
