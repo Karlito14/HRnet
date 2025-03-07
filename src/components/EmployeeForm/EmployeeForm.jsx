@@ -128,6 +128,7 @@ export const EmployeeForm = () => {
 
         <DatePickerField
           label="Date of Birth"
+          id="date-birth"
           selected={formData.dateOfBirth}
           onChange={(date) => handleDateChange('dateOfBirth', date)}
           error={errors.dateOfBirth}
@@ -135,6 +136,7 @@ export const EmployeeForm = () => {
 
         <DatePickerField
           label="Start Date"
+          id="start-date"
           selected={formData.startDate}
           onChange={(date) => handleDateChange('startDate', date)}
           error={errors.startDate}
