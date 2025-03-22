@@ -10,7 +10,6 @@ import { Modal } from 'react-modal_by_cl';
 
 export const EmployeeListComponent = () => {
   const employees = useSelector((state) => state.employees.employees);
-  console.log(employees);
 
   const [search, setSearch] = useState('');
   const [entries, setEntries] = useState(10);
